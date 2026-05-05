@@ -5,5 +5,5 @@ import java.util.List;
 public record FichaTecnicaRequestDTO(
         Long id,
         String modoDePreparo,
-        List<ingredienteRequestDTO> ingredientes) {
+        List<IngredienteRequestDTO> ingredientes) {
 }

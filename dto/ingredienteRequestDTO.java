@@ -1,7 +1,7 @@
 package com.web.akari.dto;
 
-public record ingredienteRequestDTO(
-        Long produtoId,
-        Double percapita) {
+public record IngredienteRequestDTO(
+                Long produtoId,
+                Double percapita) {
 
 }
