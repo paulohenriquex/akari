@@ -8,5 +8,5 @@ public record ProdutoResponseDTO(
         BigDecimal preco,
         String medida,
         String nomeMarca,
-        String nomeCategoriaId) {
+        String nomeCategoria) {
 }

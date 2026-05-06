@@ -2,6 +2,7 @@ package com.web.akari.service;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 import com.web.akari.dto.ProdutoRequestDTO;
 import com.web.akari.dto.ProdutoResponseDTO;
@@ -11,8 +12,6 @@ import com.web.akari.repository.MarcaRepository;
 import com.web.akari.repository.ProdutoRepository;
 import com.web.akari.repository.UserRepository;
 
-import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -41,7 +40,7 @@ public class ProdutoService {
                 return converterParaDTO(salvo);
         }
 
-        @Transactional
+        @Transactional(readOnly = true)
         public List<ProdutoResponseDTO> listarTodos() {
                 return produtoRepository.findAll().stream()
                                 .map(this::converterParaDTO)
@@ -55,6 +54,7 @@ public class ProdutoService {
                                 p.getPreco(),
                                 p.getMedida(),
                                 p.getMarca() != null ? p.getMarca().getNome() : "Sem marca.",
-                                p.getCategoria() != null ? p.getCategoria().getNome() : "Sem Categoria");
+                                p.getCategoria() != null ? p.getCategoria().getNome() : "Sem Categoria"
+                                );
         }
 }
