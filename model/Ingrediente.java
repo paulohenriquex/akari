@@ -28,8 +28,4 @@ public class Ingrediente {
 
     private Double percapita;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
 }

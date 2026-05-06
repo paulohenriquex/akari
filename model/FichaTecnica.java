@@ -3,6 +3,7 @@ package com.web.akari.model;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,12 +23,13 @@ public class FichaTecnica {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @OneToMany(mappedBy = "fichaTecnica")
+  private String nome;
+
+  @OneToMany(mappedBy = "fichaTecnica", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Ingrediente> ingredientes;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "receita_id")
-  private Receita receita;
+  @Column(columnDefinition = "TEXT")
+  private String modoDePreparo;
 
   @ManyToOne
   @JoinColumn(name = "user_id")
