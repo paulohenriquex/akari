@@ -1,7 +1,6 @@
 package com.web.akari.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +20,6 @@ public class ServicoService {
     public List<ServicoDTO> listarTodos() {
         return servicoRepository.findAll().stream()
                 .map(servico -> new ServicoDTO(servico.getId(), servico.getNome()))
-                .collect(Collectors.toList());
+                .toList();
     }
 }

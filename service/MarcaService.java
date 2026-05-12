@@ -3,14 +3,13 @@ package com.web.akari.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.web.akari.dto.MarcaRequestDTO;
 import com.web.akari.dto.MarcaResponseDTO;
 import com.web.akari.model.Marca;
 import com.web.akari.repository.MarcaRepository;
 import com.web.akari.repository.UserRepository;
-
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -31,7 +30,7 @@ public class MarcaService {
         return new MarcaResponseDTO(salva.getId(), salva.getNome());
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<MarcaResponseDTO> listarPorUsuario(Long userId) {
         return marcaRepository.findByUserId(userId).stream()
                 .map(m -> new MarcaResponseDTO(m.getId(), m.getNome()))

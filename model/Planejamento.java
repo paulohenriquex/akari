@@ -25,7 +25,7 @@ public class Planejamento {
     private Servico servico;
 
     @ManyToOne
-    @JoinColumn(name = "fica_tecnica_id")
+    @JoinColumn(name = "ficha_tecnica_id")
     private FichaTecnica fichaTecnica;
 
     private int quantitativo;

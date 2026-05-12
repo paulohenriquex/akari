@@ -25,12 +25,12 @@ public class FichaTecnicaController {
     private final FichaTecnicaService fichaTecnicaService;
 
     @PostMapping
-    public ResponseEntity<FichaTecnicaResponseDTO> criarFichaTecnica(@RequestBody FichaTecnicaRequestDTO dto) {
+    public ResponseEntity<FichaTecnicaResponseDTO> criar(@RequestBody FichaTecnicaRequestDTO dto) {
         return new ResponseEntity<>(fichaTecnicaService.criar(dto), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<FichaTecnicaResponseDTO>> listarFichasPorUsuario(@RequestParam Long userId) {
+    public ResponseEntity<List<FichaTecnicaResponseDTO>> listarPorUsuario(@RequestParam Long userId) {
         return ResponseEntity.ok(fichaTecnicaService.listarPorUsuario(userId));
     }
 }

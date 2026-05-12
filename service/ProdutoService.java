@@ -5,13 +5,14 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 import com.web.akari.dto.ProdutoRequestDTO;
+import com.web.akari.exception.ResourceNotFoundException;
 import com.web.akari.dto.ProdutoResponseDTO;
 import com.web.akari.model.Produto;
 import com.web.akari.repository.CategoriaRepository;
 import com.web.akari.repository.MarcaRepository;
 import com.web.akari.repository.ProdutoRepository;
 import com.web.akari.repository.UserRepository;
-
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -30,19 +31,19 @@ public class ProdutoService {
                 produto.setMedida(dto.medida());
 
                 produto.setMarca(marcaRepository.findById(dto.marcaId())
-                                .orElseThrow(() -> new RuntimeException("Marca não encontrada.")));
+                                .orElseThrow(() -> new ResourceNotFoundException("Marca com ID " + dto.marcaId() + " não encontrada.")));
                 produto.setCategoria(categoriaRepository.findById(dto.categoriaId())
-                                .orElseThrow(() -> new RuntimeException("Categoria não encontrada.")));
+                                .orElseThrow(() -> new ResourceNotFoundException("Categoria com ID " + dto.categoriaId() + " não encontrada.")));
                 produto.setUser(userRepository.findById(dto.userId())
-                                .orElseThrow(() -> new RuntimeException("Usuário não encontrado.")));
+                                .orElseThrow(() -> new ResourceNotFoundException("Usuário com ID " + dto.userId() + " não encontrado.")));
 
                 Produto salvo = produtoRepository.save(produto);
                 return converterParaDTO(salvo);
         }
 
         @Transactional(readOnly = true)
-        public List<ProdutoResponseDTO> listarTodos() {
-                return produtoRepository.findAll().stream()
+        public List<ProdutoResponseDTO> listarPorUsuario(Long userId) {
+                return produtoRepository.findByUserId(userId).stream()
                                 .map(this::converterParaDTO)
                                 .toList();
         }

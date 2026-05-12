@@ -25,8 +25,8 @@ public class MarcaController {
     private final MarcaService marcaService;
 
     @PostMapping
-    public ResponseEntity<MarcaResponseDTO> cadastrar(@RequestBody MarcaRequestDTO dto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(marcaService.criar(dto));
+    public ResponseEntity<MarcaResponseDTO> criar(@RequestBody MarcaRequestDTO dto) {
+        return new ResponseEntity<>(marcaService.criar(dto), HttpStatus.CREATED);
     }
 
     @GetMapping
