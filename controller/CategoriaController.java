@@ -25,8 +25,8 @@ public class CategoriaController {
     private final CategoriaService categoriaService;
 
     @PostMapping
-    public ResponseEntity<CategoriaResponseDTO> cadastrar(@RequestBody CategoriaRequestDTO dto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(categoriaService.criar(dto));
+    public ResponseEntity<CategoriaResponseDTO> criar(@RequestBody CategoriaRequestDTO dto) {
+        return new ResponseEntity<>(categoriaService.criar(dto), HttpStatus.CREATED);
     }
 
     @GetMapping
