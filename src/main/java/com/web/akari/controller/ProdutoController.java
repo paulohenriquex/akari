@@ -24,12 +24,12 @@ public class ProdutoController {
 
     private final ProdutoService produtoService;
 
-    @PostMapping
+    @PostMapping("/criar")
     public ResponseEntity<ProdutoResponseDTO> criar(@RequestBody ProdutoRequestDTO dto) {
         return new ResponseEntity<>(produtoService.criar(dto), HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping("/listar")
     public ResponseEntity<List<ProdutoResponseDTO>> listarPorUsuario(@RequestParam Long userId) {
         return ResponseEntity.ok(produtoService.listarPorUsuario(userId));
     }
