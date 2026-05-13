@@ -11,4 +11,6 @@ public interface PlanejamentoRepository
     extends JpaRepository<Planejamento, Long>
 {
     List<Planejamento> findByDataBetween(LocalDate inicio, LocalDate fim);
+
+    List<Planejamento> findByUsuarioId(Long userId);
 }

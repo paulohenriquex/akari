@@ -1,36 +1,46 @@
 package com.web.akari.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import java.time.LocalDate;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "planejamentos")
 public class Planejamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "data_servico")
+    private LocalDate data;
+
+    @Column(name = "quantidade_pessoas")
+    private Integer quantidadePessoas;
+
     @ManyToOne
     @JoinColumn(name = "servico_id")
     private Servico servico;
 
     @ManyToOne
-    @JoinColumn(name = "ficha_tecnica_id")
-    private FichaTecnica fichaTecnica;
+    @JoinColumn(name = "usuario_id")
+    private User usuario;
 
-    private int quantitativo;
-    private LocalDate data;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @ManyToMany
+    @JoinTable(
+            name = "planejamento_fichas_tecnicas",
+            joinColumns = @JoinColumn(name = "planejamento_id"),
+            inverseJoinColumns = @JoinColumn(name = "ficha_tecnica_id")
+    )
+    private Set<FichaTecnica> fichasTecnicas = new HashSet<>();
 }

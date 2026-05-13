@@ -46,13 +46,7 @@ public class FichaTecnicaService {
             .map(ingredienteDTO -> {
                 Produto produto = produtoRepository
                     .findById(ingredienteDTO.produtoId())
-                    .orElseThrow(() ->
-                        new ResourceNotFoundException(
-                            "Produto com ID " +
-                                ingredienteDTO.produtoId() +
-                                " não encontrado."
-                        )
-                    );
+                    .orElseThrow(() -> new ResourceNotFoundException("Produto com ID " + ingredienteDTO.produtoId() + " não encontrado."));
                 Ingrediente ingrediente = new Ingrediente();
                 ingrediente.setProduto(produto);
                 ingrediente.setPercapita(ingredienteDTO.percapita());
