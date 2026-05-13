@@ -1,7 +1,10 @@
 package com.web.akari.controller;
 
+import com.web.akari.dto.FornecedorRequestDTO;
+import com.web.akari.dto.FornecedorResponseDTO;
+import com.web.akari.service.FornecedorService;
 import java.util.List;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,12 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.web.akari.dto.FornecedorRequestDTO;
-import com.web.akari.dto.FornecedorResponseDTO;
-import com.web.akari.service.FornecedorService;
-
-import lombok.RequiredArgsConstructor;
-
 @RestController
 @RequestMapping("/api/fornecedores")
 @RequiredArgsConstructor
@@ -28,17 +25,27 @@ public class FornecedorController {
     private final FornecedorService fornecedorService;
 
     @PostMapping
-    public ResponseEntity<FornecedorResponseDTO> criar(@RequestBody FornecedorRequestDTO dto) {
-        return new ResponseEntity<>(fornecedorService.criar(dto), HttpStatus.CREATED);
+    public ResponseEntity<FornecedorResponseDTO> criar(
+        @RequestBody FornecedorRequestDTO dto
+    ) {
+        return new ResponseEntity<>(
+            fornecedorService.criar(dto),
+            HttpStatus.CREATED
+        );
     }
 
     @GetMapping
-    public ResponseEntity<List<FornecedorResponseDTO>> listarPorUsuario(@RequestParam Long userId) {
+    public ResponseEntity<List<FornecedorResponseDTO>> listarPorUsuario(
+        @RequestParam Long userId
+    ) {
         return ResponseEntity.ok(fornecedorService.listarPorUsuario(userId));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<FornecedorResponseDTO> atualizar(@PathVariable Long id, @RequestBody FornecedorRequestDTO dto){
+    public ResponseEntity<FornecedorResponseDTO> atualizar(
+        @PathVariable Long id,
+        @RequestBody FornecedorRequestDTO dto
+    ) {
         return ResponseEntity.ok(fornecedorService.atualizar(id, dto));
     }
 

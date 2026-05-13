@@ -1,10 +1,8 @@
 package com.web.akari.repository;
 
+import com.web.akari.model.Servico;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.web.akari.model.Servico;
-
 @Repository
-public interface ServicoRepository extends JpaRepository<Servico, Long> {
-}
+public interface ServicoRepository extends JpaRepository<Servico, Long> {}

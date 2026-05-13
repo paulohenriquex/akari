@@ -27,5 +27,4 @@ public class Ingrediente {
     private FichaTecnica fichaTecnica;
 
     private Double percapita;
-
 }

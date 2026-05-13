@@ -1,7 +1,5 @@
 package com.web.akari.model;
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,13 +8,17 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "produto", uniqueConstraints = @UniqueConstraint(columnNames = { "nome", "user_id" }))
+@Table(
+    name = "produto",
+    uniqueConstraints = @UniqueConstraint(columnNames = { "nome", "user_id" })
+)
 public class Produto {
 
     @Id
@@ -38,5 +40,4 @@ public class Produto {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
 }
