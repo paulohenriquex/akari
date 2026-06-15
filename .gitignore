@@ -1,0 +1,58 @@
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+# Ignorar arquivo real de propriedades
+/src/main/resources/application.properties
+
+# Mas versionar um arquivo de exemplo
+!/src/main/resources/application-example.properties
+
+### Logs ###
+*.log
+logs/
+
+### Sistema Operacional ###
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+### Arquivos temporários ###
+*.tmp
+*.temp
+temp/
+
+### Banco de dados local ###
+*.db
+*.h2.db
+*.mv.db
