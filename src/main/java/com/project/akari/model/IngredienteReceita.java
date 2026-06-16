@@ -1,5 +1,7 @@
 package com.project.akari.model;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -30,6 +32,6 @@ public class IngredienteReceita {
     @JoinColumn(name = "receita_id", nullable = false)
     private Receita receita;
 
-    @Column(name = "percapita")
-    private Double perCapita;
+    @Column(name = "perapita", precision = 10, scale = 4)
+    private BigDecimal perCapita;
 }

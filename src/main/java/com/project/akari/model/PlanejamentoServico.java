@@ -1,6 +1,7 @@
 package com.project.akari.model;
 
-import java.time.LocalDate;
+import jakarta.persistence.GenerationType;
+
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -18,18 +19,27 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-public class Planejamento {
+public class PlanejamentoServico {
     @Id
-    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "empresa_id", nullable = false)
     private Empresa empresa;
 
-    @OneToMany(mappedBy = "planejamento", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PlanejamentoServico> servicosDoDia;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "planejamento_id", nullable = false)
+    private Planejamento planejamento;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "servico_id", nullable = false)
+    private Servico servico;
+
+    @OneToMany(mappedBy = "planejamentoServico", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PlanejamentoReceita> receitas;
 
     @Column(nullable = false)
-    private LocalDate data;
+    private Integer quantitativo;
+
 }
